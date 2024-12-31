@@ -1,0 +1,1331 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Royaume</title>
+    <style>
+        #nRoyaume {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .section {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px;
+            width: 200px;
+        }
+        
+        #sPopulation {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        #sMarche {
+            position: absolute;
+            left: 250px;
+            top: 63px;
+        }
+        #sCaserne {
+            position: absolute;
+            left: 250px;
+            top: 710px;
+        }
+        #sRegion {
+            position: absolute;
+            left: 500px;
+            top: 63px;
+            border: 5px solid #ccc;
+            padding: 15px;
+            margin: 15px;
+            width: 810px;
+            height: 1000px;
+        }
+        #titreRegion {
+            position: absolute;
+            left: 20px;
+            top: 800px;
+            font-size: 80px;
+            
+        }
+        #aRegionNord {
+            position: absolute;
+            left: 220px;
+            width: 400px;
+             height: 240px;
+        }
+        #aRegionSud {
+            position: absolute;
+            left: 220px;
+            top: 600px;
+            font-size: 30px;
+            width: 400px;
+             height: 240px;
+        }
+        #aRegionEst {
+            font-size: 30px;
+            width: 370px;
+             height: 240px;
+             position: absolute;
+             top: 290px;
+        }
+        #aRegionOuest {
+            font-size: 30px;
+            width: 370px;
+             height: 240px;
+             position: absolute;
+             top: 290px;
+             left: 430px;
+        }
+        #stech {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        #rEspion {
+            font-size: 18px;
+            font-weight: none;
+            position: absolute;
+            bottom: 120px;
+        }
+        .infoRegion {
+            position: absolute;
+            top: 200px;
+            font-size: 13px;
+        }
+        #divEspionNord {
+            position: absolute;
+            left: 270px;
+            top: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px;
+            
+        }
+        #titreNord {
+            font-size: 20px;
+        }
+        #titreOuest {
+            font-size: 20px;
+        }
+        #titreEst {
+            font-size: 20px;
+        }
+        #titreSud {
+            font-size: 20px;
+        }
+        #buttonEspionNord {
+            position: absolute;
+            bottom: 10px;
+        }
+        #positionSoldat {
+            position: absolute;
+            left: 1370px;
+            top: 65px;
+        }
+        #buttonEspionOuest {
+            position: absolute;
+            bottom: 10px;
+        }
+        #buttonEspionEst {
+            position: absolute;
+            bottom: 10px;
+        }
+        #buttonEspionSud {
+            position: absolute;
+            bottom: 10px;
+        }
+        #divEspionOuest {
+            position: absolute;
+            left: 240px;
+            top: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px; 
+        }
+        #divEspionEst {
+            position: absolute;
+            left: 240px;
+            top: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px;
+        }
+        #divEspionSud {
+            position: absolute;
+            left: 270px;
+            top: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px; 
+        }
+        #infoRegionOuest {
+            font-size: 15px;
+        }
+        #infoRegionEst {
+            font-size: 15px;
+        }
+        #infoRegionSud {
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <p id="nRoyaume"></p>
+    <div id="sPopulation" class="section">
+        <p id="rPop">0 / 70 population</p>
+        <p id='rBat'>0 / 50 bâtiment</p>
+    </div>
+
+
+    <div id="sRessource" class="section">
+        <h3>Ressources</h3>
+        <p id="rNourriture">0 nourriture(s)</p>
+        <p id="rBois">0 bois</p>
+        <p id="rPierre">0 pierre(s)</p>
+        <p id="rOr" style='display: none';>0 or(s)</p>
+        <button id="aNourriture">Chassez/Cueillez</button>
+        <button id="aBois">Ramassez du bois</button>
+        <button id="aPierre">Ramassez des pierres</button>
+    </div>
+
+        
+    <div id="sMetier" class="section">
+        <h3>Travailleurs</h3>
+        <p id="rChasseur">0 cultivateur(s)</p>
+        <p id="rBucheron" style='display: none;'>0 bucheron(s)</p>
+        <p id="rTailleur" style="display: none;">0 tailleur(s)</p>
+        <p id="rMineur" style="display: none;">0 mineur(s)</p>
+        <button id="aChasseur">Recrutez un cultivateur</button>
+        <button id="aBucheron" style='display: none;'>Recrutez un bucheron</button>
+        <button id="aTailleur" style='display: none;'>Recrutez un tailleur</button>
+        <button id='aMineur' style="display: none;">Recrutez un mineur</button>
+    </div>
+
+
+    <div id="sBatiment" class="section">
+        <h3>Bâtiments</h3>
+        <p id='rHabitation'>0 habitation(s)</p>
+        <p id="rScierie" style="display: none;">0 scierie(s)</p>
+        <p id="rCarriere" style="display: none;">0 carriere(s)</p>
+        <p id='rFerme' style="display: none;">0 ferme(s)</p>
+        <p id='rMine' style="display: none;">0 mine(s)</p>
+        <button id="aHabitation">Construisez une habitation</button>
+        <button id="aScierie" style="display: none;">Construisez une scierie</button>
+        <button id="aCarriere" style="display: none;">Construisez une carriere</button>
+        <button id="aFerme" style="display: none;">Construisez une ferme</button>
+        <button id="aMine" style="display: none;">Construisez une mine</button>
+    </div>
+
+
+    <div id='sMarche' class='section' style='display: none;'>
+        <h3>Marché</h3>
+        <p id='rMarcheAchat'>Achat de 100 unités de ressources (Nourriture, Bois, Pierre)</p>
+        <p>Nourriture</p>
+        <button id="but-ran-AchatNourr" data-ressource='Nourriture'></button>
+        <p>Bois</p>
+        <button id="but-ran-AchatBois" data-ressource='Bois'></button>
+        <p>Pierre</p>
+        <button id="but-ran-AchatPierre" data-ressource='Pierre'></button>
+        <p id='rMarcheVente'>Vente de 100 unités de ressources (Nourriture, Bois, Pierre)</p>
+        <p>Nourriture</p>
+        <button id="but-ran-VenteNourr" data-ressource='Nourriture'></button>
+        <p>Bois</p>
+        <button id="but-ran-VenteBois" data-ressource='Bois'></button>
+        <p>Pierre</p>
+        <button id="but-ran-VentePierre" data-ressource='Pierre'></button>
+    </div>
+
+
+    <div id='sCaserne' class='section' style='display: none'>
+        <h3>Caserne</h3>
+        <p id='rFantassin'>0 fantassin(s)</p>
+        <p id='rCavalier'>0 cavalier(s)</p>
+        <p id='rLancier'>0 lancier(s)</p>
+        <button id='aFantassin'>Recrutez un fantassin</button>
+        <button id='aCavalier'>Recrutez un cavalier</button>
+        <button id='aLancier'>Recrutez un lancier</button>
+        <button id='aGeneral'>Formez un général</button>
+        <button id='aEspion'>Recrutez un espion</button>
+    </div>
+
+
+    <div id='sRegion' class='section2' style='display: none'>
+        <h3 id='titreRegion'></h3>
+        <div class='section' id='aRegionNord'><p id='titreNord'>Nord</p>
+        <div class='section' id='infoRegionNord' style='display: none'>
+        <p id='rNord-InfoFantassin' style='display: none'>Nombre de fantassin : Inconnu</p>
+        <p id='rNord-InfoCavalier' style='display: none'>Nombre de Cavalier : Inconnu</p>
+        <p id='rNord-InfoLancier' style='display: none'>Nombre de lancier : Inconnu</p>
+        </div>
+        <div id='divEspionNord' class='infoRegion'>
+        <p id='espionNord'>Espion envoyé : 0</p>
+        <button id="rapportNord">Rapport</button>
+        </div>
+        <div id="buttonEspionNord">
+        <button id='envEspionNord'>Envoyez un espion</button>
+        <button id='recEspionNord'>Récupérez un espion</button>
+        <button id='aAttaqueNord'>Attaquez la region</button>
+        </div>
+        </div>
+        
+        <div class='section' id='aRegionOuest'><p id='titreOuest'>Est</p>
+            <div class='section' id='infoRegionOuest' style='display: none'>
+            <p id='rOuest-InfoFantassin' style='display: none'>Nombre de fantassin : Inconnu</p>
+            <p id='rOuest-InfoCavalier' style='display: none'>Nombre de Cavalier : Inconnu</p>
+            <p id='rOuest-InfoLancier' style='display: none'>Nombre de lancier : Inconnu</p>
+            </div>
+            <div id='divEspionOuest' class='infoRegion'>
+            <p id='espionOuest'>Espion envoyé : 0</p>
+            <button id="rapportOuest">Rapport</button>
+            </div>    
+            <div id="buttonEspionOuest">
+            <button id='envEspionOuest'>Envoyez un espion</button>
+            <button id='recEspionOuest'>Récupérez un espion</button>
+            <button id='aAttaqueOuest'>Attaquez la region</button>
+            </div></div>
+
+        <div class='section' id='aRegionEst'><p id='titreEst'>Ouest</p>
+            <div class='section' id='infoRegionEst' style='display: none'>
+        <p id='rEst-InfoFantassin' style='display: none'>Nombre de fantassin : Inconnu</p>
+        <p id='rEst-InfoCavalier' style='display: none'>Nombre de Cavalier : Inconnu</p>
+        <p id='rEst-InfoLancier' style='display: none'>Nombre de lancier : Inconnu</p>
+            </div>
+        <div id='divEspionEst' class='infoRegion'>
+        <p id='espionEst'>Espion envoyé : 0</p>
+        <button id="rapportEst">Rapport</button>
+        </div>    
+        <div id="buttonEspionEst">
+        <button id='envEspionEst'>Envoyez un espion</button>
+        <button id='recEspionEst'>Récupérez un espion</button>
+        <button id='aAttaqueEst'>Attaquez la region</button>
+        </div></div>
+
+        <div class='section' id='aRegionSud'><p id='titreSud'>Sud</p>
+            <div class='section' id='infoRegionSud' style='display: none'>
+        <p id='rSud-InfoFantassin' style='display: none'>Nombre de fantassin : Inconnu</p>
+        <p id='rSud-InfoCavalier' style='display: none'>Nombre de Cavalier : Inconnu</p>
+        <p id='rSud-InfoLancier' style='display: none'>Nombre de lancier : Inconnu</p>
+            </div>
+        <div id='divEspionSud' class='infoRegion'>
+        <p id='espionSud'>Espion envoyé : 0</p>
+        <button id="rapportSud">Rapport</button>
+        </div>    
+        <div id="buttonEspionSud">
+        <button id='envEspionSud'>Envoyez un espion</button>
+        <button id='recEspionSud'>Récupérez un espion</button>
+        <button id='aAttaqueSud'>Attaquez la region</button>
+        </div></div>
+        <p id='rEspion'>Espion disponible : 0</p>
+    </div>
+
+
+    <div id='positionSoldat' class='section' style="display: none;">
+        <h3>Positionnement</h3>
+        <label for="lanciers">Lanciers:</label>
+        <input type="range" id="lanciers" name="lanciers" min="1" max="3" value="1">
+        <span id="lancierValue">1</span>
+        <br><br>
+        
+        <label for="cavaliers">Cavaliers:</label>
+        <input type="range" id="cavaliers" name="cavaliers" min="1" max="3" value="2">
+        <span id="cavalierValue">2</span>
+        <br><br>
+        
+        <label for="fantassins">Fantassins:</label>
+        <input type="range" id="fantassins" name="fantassins" min="1" max="3" value="3">
+        <span id="fantassinValue">3</span>
+        <br><br>
+    </div>
+
+
+    <div id="stech" class="section">
+        <h3>Technologie</h3>
+        <button id="tHache">Développez la hache</button>
+        <button id="tPioche">Développez la pioche</button>
+        <button id='tCartographie' style="display: none;">Developpez la cartographie</button>
+        <button id='tMarche' style="display: none;">Construisez un marché</button>
+        <button id='tCaserne' style="display: none;">Construisez une caserne</button>
+    </div>
+
+    <script>
+        // Initialisation des variables globales
+        const ressources = { Nourriture: 500000, Bois: 500000, Pierre: 5000000, Or: 5000000 };
+        const travailleurs = { Chasseur: 0, Bucheron: 0, Tailleur: 0, Mineur: 0 };
+        const soldat = { Fantassin: 0, Cavalier: 0, Lancier: 0, Espion: 0, espionNord: 0, espionOuest: 0, espionEst: 0, espionSud: 0, General: false };
+        const technologies = { Hache: false, Pioche: false, Ecole: false, Marche: false, Cartographie: false };
+        const batiments = { Carriere: 0, Scierie: 0, Habitation: 0, Ferme: 0, Mine: 0 };
+        let actualBat = Object.values(batiments).reduce((depart, value) => depart + value, 0);
+        let maxBat = 50;
+        const positionArmee = { Fantassin: fantassinValue, Lancier: lancierValue, Cavalier: cavalierValue };
+        const position = {
+            nord: { Fantassin: 1, Cavalier: 2, Lancier: 3 },
+            ouest: { Fantassin: 1, Cavalier: 2, Lancier: 3 },
+            sud: { Fantassin: 1, Cavalier: 2, Lancier: 3 },
+            est: { Fantassin: 1, Cavalier: 2, Lancier: 3 }
+        };
+        let armeeNord = { Fantassin: 50, Cavalier: 50, Lancier: 50 };
+        let armeeOuest = { Cavalier: 0, Fantassin: 0, Lancier: 0 };
+        let armeeEst = { Cavalier: 0, Fantassin: 0, Lancier: 0 };
+        let armeeSud = { Cavalier: 0, Fantassin: 0, Lancier: 0 };
+        let nextIntervalTime = Date.now() + 100000;
+        const initialIntervalTime = nextIntervalTime;
+
+        // Choix du nom du royaume
+        const royaumeNom = prompt("Choisissez le nom de votre royaume") || "Royaume Sans Nom";
+        document.getElementById("nRoyaume").textContent = royaumeNom;
+
+        // Actualisation de la population
+        const state = {
+            batiments,
+            get actualBat() {
+                return Object.values(this.batiments).reduce((sum, value) => sum + value, 0);
+            },
+            get maxPop() {
+                return 50 + (this.batiments.Habitation * 20);
+            }
+        };
+        const state2 = {
+            travailleurs, 
+            soldat,
+            get actualPop() {
+                return Object.values(this.travailleurs).reduce((sum, value) => sum + value, 0) + Object.values(this.soldat).reduce((sum, value) => sum + value, 0);
+            }
+        };    
+        // Fonction générique pour mettre à jour les ressources
+        function updateDisplay() {
+            
+            document.getElementById('rPop').textContent = `${state2.actualPop} / ${state.maxPop} population`;
+            document.getElementById('rBat').textContent = `${state.actualBat} / ${maxBat} bâtiments`;
+
+            document.getElementById("rNourriture").textContent = `${ressources.Nourriture} nourriture(s)`;
+            document.getElementById("rBois").textContent = `${ressources.Bois} bois`;
+            document.getElementById("rPierre").textContent = `${ressources.Pierre} pierre(s)`;
+            document.getElementById("rOr").textContent = `${ressources.Or} or(s)`;
+
+            document.getElementById("rChasseur").textContent = `${travailleurs.Chasseur} cultivateur(s)`;
+            document.getElementById("rBucheron").textContent = `${travailleurs.Bucheron} bucheron(s)`;
+            document.getElementById("rTailleur").textContent = `${travailleurs.Tailleur} tailleur(s)`;
+            document.getElementById("rMineur").textContent = `${travailleurs.Mineur} mineur(s)`;
+            
+            document.getElementById('rFantassin').textContent = `${soldat.Fantassin} fantassin(s)`;
+            document.getElementById('rCavalier').textContent = `${soldat.Cavalier} cavalier(s)`;
+            document.getElementById('rLancier').textContent = `${soldat.Lancier} lancier(s)`;
+            document.getElementById('rEspion').textContent = `Espion disponible : ${soldat.Espion}`;
+            document.getElementById('espionNord').textContent = `Espion envoyé : ${soldat.espionNord}`;
+            document.getElementById('espionOuest').textContent = `Espion envoyé : ${soldat.espionOuest}`;
+            document.getElementById('espionEst').textContent = `Espion envoyé : ${soldat.espionEst}`;
+            document.getElementById('espionSud').textContent = `Espion envoyé : ${soldat.espionSud}`;
+            
+            document.getElementById("rCarriere").textContent = `${batiments.Carriere} carriere(s)`;
+            document.getElementById("rScierie").textContent = `${batiments.Scierie} scierie(s)`;
+            document.getElementById('rHabitation').textContent = `${batiments.Habitation} habitation(s)`;
+            document.getElementById('rFerme').textContent = `${batiments.Ferme} ferme(s)`;
+            document.getElementById('rMine').textContent = `${batiments.Mine} mine(s)`;
+            
+            
+        }
+
+        // Ajout de ressources
+        function addResource(type, amount) {
+            if (ressources[type] !== undefined) {
+                ressources[type] += amount;
+                updateDisplay();
+            }
+        }
+        function lessRessource(type, amount) {
+            if (ressources[type] !==undefined) {
+                ressources[type] -= amount;
+                updateDisplay();
+            }
+        }
+        //Ca sert peut etre à rien ça... mmhh j'vais y méditer. 
+        const recruitButtons = ["aChasseur", "aBucheron", "aTailleur", "aMineur", "aFantassin", "aCavalier", "aLancier"];
+        recruitButtons.forEach((id) => {
+        document.getElementById(id).disabled = state2.actualPop >= state.maxPop;
+        });
+        // Gestion des récoltes par les travailleurs & paie des soldats
+        function autoGather() {
+            addResource("Nourriture", travailleurs.Chasseur * (1 + batiments.Ferme));
+            addResource("Bois", travailleurs.Bucheron * (1 + batiments.Scierie));
+            addResource("Pierre", travailleurs.Tailleur * (1 + batiments.Carriere));
+            addResource("Or", travailleurs.Mineur * (1 + batiments.Mine));
+            lessRessource('Or', soldat.Fantassin * 10);
+            lessRessource('Or', soldat.Cavalier * 20);
+            lessRessource('Or', soldat.Lancier * 10);
+            SoldatNonPaye();
+            
+        }
+
+        // Gestion des boutons ressources
+        document.getElementById("aNourriture").addEventListener("click", () => addResource("Nourriture", 1));
+        document.getElementById("aBois").addEventListener("click", () => addResource("Bois", 1));
+        document.getElementById("aPierre").addEventListener("click", () => addResource("Pierre", 1));
+
+
+        // Recrutement des travailleurs
+        function recruitWorker(type, costs) {
+            if (state2.actualPop >= state.maxPop) {
+                alert("Population maximale atteinte !");
+                return;
+            }
+            const canAfford = Object.entries(costs).every(([ressource, cost]) => ressources[ressource] >= cost);
+            if (canAfford) {
+                Object.entries(costs).forEach(([ressource, cost]) => (ressources[ressource] -= cost));
+                travailleurs[type]++;
+                updateDisplay();
+            } else {
+                alert("Ressources insuffisantes");
+            }
+        }
+        //bouton
+        document.getElementById("aChasseur").addEventListener("click", () =>
+            recruitWorker("Chasseur", { Nourriture: 10, Bois: 5 })
+        );
+        document.getElementById("aBucheron").addEventListener("click", () => {
+            if (technologies.Hache) {
+                recruitWorker("Bucheron", { Nourriture: 10, Bois: 10, Pierre: 10 });  
+            } else {
+                alert("Vous devez d'abord développer la technologie Hache.");
+            }           
+        });
+        document.getElementById("aTailleur").addEventListener("click", () => {
+            if (technologies.Pioche) {
+                recruitWorker("Tailleur", { Nourriture: 15, Bois: 10, Pierre: 10 });
+            } else {
+                alert("Vous devez d'abord développer la technologie Pioche.");
+            }
+        });
+        document.getElementById("aMineur").addEventListener("click", () => {
+            if (technologies.Marche) {
+                recruitWorker("Mineur", { Nourriture: 30, Bois: 20, Pierre: 20 });
+            } else {
+                alert("Vous devez d'abord développer la technologie marche.");
+            }
+        });
+        
+        // SOLDATS
+        function recruitSoldier(type, cout) {
+            if (state2.actualPop >= state.maxPop) {
+                alert('Population maximale atteinte !');
+                return;
+            }
+            const payerSoldat = Object.entries(cout).every(([ressource, cout]) => ressources[ressource] >= cout);
+            if (payerSoldat) {
+                Object.entries(cout).forEach(([ressource, cout]) => (ressources[ressource] -= cout));
+                soldat[type]++;
+                updateDisplay();
+            } else {
+                alert('Ressources insuffisantes');
+            }
+        }
+
+        // Boutons
+        document.getElementById('aFantassin').addEventListener('click', () => {
+            recruitSoldier('Fantassin', { Nourriture: 500, Or: 100});
+            
+        });
+        
+        document.getElementById('aCavalier').addEventListener('click', () => {
+            recruitSoldier('Cavalier', { Nourriture: 500, Or: 500});
+            
+        });
+        
+        document.getElementById('aLancier').addEventListener('click', () => {
+            recruitSoldier('Lancier', { Nourriture: 300, Or: 300});
+            
+        });
+        
+        document.getElementById('aEspion').addEventListener('click', () => {
+            if (technologies.Cartographie == true) {
+            recruitSoldier('Espion', { Nourriture: 1000, Or: 400}) }
+            else {
+                alert ('Vous ne possedez pas la technologie Cartographie');
+            }
+        });
+
+
+        //Position soldat
+
+        const lancierInput = document.getElementById('lanciers');
+        const cavalierInput = document.getElementById('cavaliers');
+        const fantassinInput = document.getElementById('fantassins');
+
+        lancierInput.oninput = function() {
+        document.getElementById("lancierValue").textContent = this.value;
+        console.log('lancier dans lancierInputfunction :', lancierValue)
+        };
+        cavalierInput.oninput = function() {
+
+        document.getElementById("cavalierValue").textContent = this.value;
+        console.log('cavalier dans cavalierInputfunction :', cavalierValue)     
+        };
+        fantassinInput.oninput = function() {
+  
+        document.getElementById("fantassinValue").textContent = this.value;
+        console.log('fantassin dans fantassinInputfunction :', fantassinValue)
+        };
+        
+        function updatePositionArmee() {
+        lancierValue = parseInt(lancierInput.value);
+        cavalierValue = parseInt(cavalierInput.value);
+        fantassinValue = parseInt(fantassinInput.value);
+        document.getElementById('lancierValue').textContent = lancierValue;
+        document.getElementById('cavalierValue').textContent = cavalierValue;
+        document.getElementById('fantassinValue').textContent = fantassinValue;
+        console.log('lancier :', lancierValue + '\ncavaliver :', cavalierValue + '\nfantassin : ', fantassinValue)
+        };
+
+        // Ajouter un événement pour chaque input pour mettre à jour l'objet quand l'utilisateur bouge le curseur
+        lancierInput.addEventListener('input', updatePositionArmee);
+        cavalierInput.addEventListener('input', updatePositionArmee);
+        fantassinInput.addEventListener('input', updatePositionArmee);
+
+        // Appeler la fonction une première fois pour initialiser les valeurs
+        //updatePositionArmee();
+        
+        // Desertion
+        function SoldatNonPaye() {
+    if (
+        ressources.Or < 0 && 
+        (soldat.Fantassin >= 1 || soldat.Cavalier >= 1 || soldat.Lancier >= 1)
+    ) {
+        if (soldat.Fantassin >= 1) {
+            soldat.Fantassin--;
+        } else if (soldat.Cavalier >= 1) {
+            soldat.Cavalier--;
+        } else if (soldat.Lancier >= 1) {
+            soldat.Lancier--;
+        }
+
+        ressources.Or = 0;
+        state2.actualPop--;
+        updateDisplay();
+    }
+}
+             
+        // TECHNOLOGIE
+        document.getElementById("tHache").addEventListener("click", () => {
+            if (ressources.Nourriture >= 500) {
+                ressources.Nourriture -= 500;
+                technologies.Hache = true;
+                document.getElementById("tHache").remove();
+                document.getElementById('aBucheron').style.display = "block";
+                document.getElementById('rBucheron').style.display = "block";
+                document.getElementById('aScierie').style.display = "block";
+                document.getElementById('rScierie').style.display = "block";
+                updateDisplay();
+            } else {
+                alert("Ressources insuffisantes pour développer la hache.");
+            }
+        });
+
+        document.getElementById("tPioche").addEventListener("click", () => {
+            if (ressources.Nourriture >= 1000) {
+                ressources.Nourriture -= 1000;
+                technologies.Pioche = true;
+                document.getElementById("tPioche").remove();
+                document.getElementById("rCarriere").style.display = "block";
+                document.getElementById("aCarriere").style.display = "block";
+                document.getElementById("rCarriere").textContent = `${batiments.Carriere} carriere(s)`;
+                document.getElementById('aTailleur').style.display = "block";
+                document.getElementById('rTailleur').style.display = "block";
+                document.getElementById('aFerme').style.display = "block";
+                document.getElementById('rFerme').style.display = "block";
+                document.getElementById('tMarche').style.display = "block";
+                updateDisplay();
+            } else {
+                alert("Ressources insuffisantes pour développer la pioche.");
+            }
+        });
+        document.getElementById('aGeneral').addEventListener('click', () => {
+            if (ressources.Nourriture >= 1000 && ressources.Bois >= 1000 && ressources.Pierre >= 1000 && ressources.Or >= 500) {
+                soldat.General = true;
+                ressources.Nourriture -= 1000;
+                ressources.Bois -= 1000;
+                ressources.Pierre -= 1000;
+                ressources.Or -= 500;
+                document.getElementById('positionSoldat').style.display = 'block';
+                document.getElementById('aGeneral').remove();
+            } else {
+                alert('Ressource insuffisantes pour formez un général')
+            }
+        });
+        document.getElementById('tMarche').addEventListener('click', () => {
+            if (ressources.Nourriture >= 1000 && ressources.Bois >= 1000 && ressources.Pierre >= 1000) {
+                ressources.Nourriture -= 1000;
+                ressources.Bois -= 1000;
+                ressources.Pierre -= 1000;
+                technologies.Marche = true;
+                document.getElementById("tMarche").remove();
+                document.getElementById("sMarche").style.display = "block";
+                document.getElementById("rOr").style.display = "block";
+                document.getElementById('aMineur').style.display = "block";
+                document.getElementById('rMineur').style.display = "block";
+                document.getElementById('aMine').style.display = "block";
+                document.getElementById('rMine').style.display = "block";
+                document.getElementById('tCaserne').style.display = "block";
+                updateDisplay();
+            } else {
+                alert('Ressources insuffisantes pour développer le marché.');
+            }   
+        });
+        document.getElementById('tCaserne').addEventListener('click', () => {
+            if (ressources.Nourriture >= 1000 && ressources.Bois >= 1000 && ressources.Pierre >= 1000 && ressources.Or >= 500) {
+                ressources.Nourriture -= 1000;
+                ressources.Bois -= 1000;
+                ressources.Pierre -= 1000;
+                ressources.Or -= 500;
+                document.getElementById('tCartographie').style.display = "block";
+                document.getElementById('sCaserne').style.display = "block";
+                document.getElementById('tCaserne').remove();
+                updateDisplay();
+            }
+        });
+        
+        document.getElementById('tCartographie').addEventListener('click', () => {
+            if (ressources.Nourriture >= 1000 && ressources.Bois >= 1000 && ressources.Pierre >= 1000 && ressources.Or >= 1000) {
+                ressources.Nourriture -= 1000;
+                ressources.Bois -= 1000;
+                ressources.Pierre -= 1000;
+                ressources.Or -= 1000;
+                technologies.Cartographie = true;
+                document.getElementById('sRegion').style.display = "block";
+                document.getElementById('tCartographie').remove();
+                updateDisplay();
+            }
+        });
+        // BATIMENT
+
+        function buildBat(type, cout) {
+            if (state.actualBat >= maxBat) {
+                alert('Nombre de batiment maximum atteint pour la région!');
+                return;
+            }
+            const payerBat = Object.entries(cout).every(([ressource, cout]) => ressources[ressource] >= cout);
+            if (payerBat) {
+                Object.entries(cout).forEach(([ressource, cout]) => (ressources[ressource] -= cout));
+                batiments[type]++;
+                updateDisplay();
+            } else {
+                alert('Ressources insuffisantes');
+            }
+        }
+        document.getElementById('aCarriere').addEventListener('click', () => {
+            buildBat('Carriere', { Nourriture: 200, Pierre: 200, Bois: 200});
+            
+        });
+        document.getElementById('aMine').addEventListener('click', () => {
+            buildBat('Mine', { Nourriture: 500, Pierre: 500, Bois: 500});
+            
+        });
+        document.getElementById('aScierie').addEventListener('click', () => {
+            buildBat('Scierie', { Nourriture: 200, Pierre: 200, Bois: 200});
+            
+        });
+        document.getElementById('aHabitation').addEventListener('click', () => {
+            buildBat('Habitation', { Nourriture: 100, Pierre: 100, Bois: 100});
+            
+        });
+        document.getElementById('aFerme').addEventListener('click', () => {
+            buildBat('Ferme', { Nourriture: 200, Pierre: 200, Bois: 200});
+            
+        });
+
+        // Fonction Espion
+        //NORD
+        document.getElementById('envEspionNord').addEventListener('click', () => {
+            if (soldat.Espion >= 1) {
+            soldat.Espion--;
+            soldat.espionNord++;
+                if(soldat.espionNord >= 1) {
+                    document.getElementById('rNord-InfoFantassin').style.display = "block";
+                    document.getElementById('infoRegionNord').style.display = 'block';
+                }
+                if(soldat.espionNord >= 2) {
+                    document.getElementById('rNord-InfoCavalier').style.display = "block";
+                }
+                if(soldat.espionNord >= 3) {
+                    document.getElementById('rNord-InfoLancier').style.display = "block";
+                }
+            updateDisplay();
+            } else {
+                alert ('Formez plus d\'espion');
+            }
+        });
+        
+        document.getElementById('recEspionNord').addEventListener('click', () => {
+            if (soldat.espionNord >= 1) {
+            soldat.Espion++;
+            soldat.espionNord--;
+                if(soldat.espionNord == 0) {
+                    document.getElementById('infoRegionNord').style.display = 'none';
+                }
+                if(soldat.espionNord <= 0) {
+                    document.getElementById('rNord-InfoFantassin').style.display = "none";
+                }
+                if(soldat.espionNord <= 1) {
+                    document.getElementById('rNord-InfoCavalier').style.display = "none";
+                }
+                if(soldat.espionNord <= 2) {
+                    document.getElementById('rNord-InfoLancier').style.display = "none";
+                }
+            updateDisplay();
+            } else {
+                alert ('Vous ne possedez aucun espion dans la région');
+            }
+        });
+        //Ouest
+        document.getElementById('envEspionOuest').addEventListener('click', () => {
+            if (soldat.Espion >= 1) {
+            soldat.Espion--;
+            soldat.espionOuest++;
+                if(soldat.espionOuest >= 1) {
+                    document.getElementById('rOuest-InfoFantassin').style.display = "block";
+                    document.getElementById('infoRegionOuest').style.display = 'block';
+                }
+                if(soldat.espionOuest >= 2) {
+                    document.getElementById('rOuest-InfoCavalier').style.display = "block";
+                }
+                if(soldat.espionOuest >= 3) {
+                    document.getElementById('rOuest-InfoLancier').style.display = "block";
+                }
+            updateDisplay();
+            } else {
+                alert ('Formez plus d\'espion');
+            }
+        });
+        
+        document.getElementById('recEspionOuest').addEventListener('click', () => {
+            if (soldat.espionOuest >= 1) {
+            soldat.Espion++;
+            soldat.espionOuest--;
+                if(soldat.espionOuest == 0) {
+                    document.getElementById('infoRegionOuest').style.display = 'none';
+                }
+                if(soldat.espionOuest <= 0) {
+                    document.getElementById('rOuest-InfoFantassin').style.display = "none";
+                }
+                if(soldat.espionOuest <= 1) {
+                    document.getElementById('rOuest-InfoCavalier').style.display = "none";
+                }
+                if(soldat.espionOuest <= 2) {
+                    document.getElementById('rOuest-InfoLancier').style.display = "none";
+                }
+            updateDisplay();
+            } else {
+                alert ('Vous ne possedez aucun espion dans la région');
+            }
+        });
+        //Est
+        document.getElementById('envEspionEst').addEventListener('click', () => {
+            if (soldat.Espion >= 1) {
+            soldat.Espion--;
+            soldat.espionEst++;
+                if(soldat.espionEst >= 1) {
+                    document.getElementById('rEst-InfoFantassin').style.display = "block";
+                    document.getElementById('infoRegionEst').style.display = 'block';
+                }
+                if(soldat.espionEst >= 2) {
+                    document.getElementById('rEst-InfoCavalier').style.display = "block";
+                }
+                if(soldat.espionEst >= 3) {
+                    document.getElementById('rEst-InfoLancier').style.display = "block";
+                }
+            updateDisplay();
+            } else {
+                alert ('Formez plus d\'espion');
+            }
+        });
+        
+        document.getElementById('recEspionEst').addEventListener('click', () => {
+            if (soldat.espionEst >= 1) {
+            soldat.Espion++;
+            soldat.espionEst--;
+                if(soldat.espionEst == 0) {
+                    document.getElementById('infoRegionEst').style.display = 'none';
+                }
+                if(soldat.espionEst <= 0) {
+                    document.getElementById('rEst-InfoFantassin').style.display = "none";
+                }
+                if(soldat.espionEst <= 1) {
+                    document.getElementById('rEst-InfoCavalier').style.display = "none";
+                }
+                if(soldat.espionEst <= 2) {
+                    document.getElementById('rEst-InfoLancier').style.display = "none";
+                }
+            updateDisplay();
+            } else {
+                alert ('Vous ne possedez aucun espion dans la région');
+            }
+        });
+
+        //Sud
+        document.getElementById('envEspionSud').addEventListener('click', () => {
+            if (soldat.Espion >= 1) {
+            soldat.Espion--;
+            soldat.espionSud++;
+                if(soldat.espionSud >= 1) {
+                    document.getElementById('rSud-InfoFantassin').style.display = "block";
+                    document.getElementById('infoRegionSud').style.display = 'block';
+                }
+                if(soldat.espionSud >= 2) {
+                    document.getElementById('rSud-InfoCavalier').style.display = "block";
+                }
+                if(soldat.espionSud >= 3) {
+                    document.getElementById('rSud-InfoLancier').style.display = "block";
+                }
+            updateDisplay();
+            } else {
+                alert ('Formez plus d\'espion');
+            }
+        });
+        
+        document.getElementById('recEspionSud').addEventListener('click', () => {
+            if (soldat.espionSud >= 1) {
+            soldat.Espion++;
+            soldat.espionSud--;
+                if(soldat.espionSud == 0) {
+                    document.getElementById('infoRegionSud').style.display = 'none';
+                }
+                if(soldat.espionSud <= 0) {
+                    document.getElementById('rSud-InfoFantassin').style.display = "none";
+                }
+                if(soldat.espionSud <= 1) {
+                    document.getElementById('rSud-InfoCavalier').style.display = "none";
+                }
+                if(soldat.espionSud <= 2) {
+                    document.getElementById('rSud-InfoLancier').style.display = "none";
+                }
+            updateDisplay();
+            } else {
+                alert ('Vous ne possedez aucun espion dans la région');
+            }
+        });
+
+        //Fonctionnement marché
+        
+        function getRandomNumber(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+        // Positionnement armée ennemie ! 
+        
+        function shuffleArray(arr) {
+        for (let i = arr.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr;
+        }
+
+        function assignRandomValues(position) {
+        const keys = ["Fantassin", "Cavalier", "Lancier"];
+        for (const direction in position) {
+            const randomValues = shuffleArray([1, 2, 3]); 
+            keys.forEach((key, index) => {
+            position[direction][key] = randomValues[index];
+            });
+            }
+        }
+        setInterval( () =>  { 
+            assignRandomValues(position); tempsrestant = 100; } , 100000);
+
+        let tempsrestant = 100;
+
+        function decrementationTemps () {
+            tempsrestant -= 1;
+            if (tempsrestant < 0) {
+                tempsrestant = 100;
+            }
+        }
+        setInterval(decrementationTemps, 1000);
+
+        //BOUTON RAPPORT  : 
+        document.getElementById('rapportNord').addEventListener('click', () => {
+        if (soldat.espionNord >= 5) {
+            alert('Position de l\'armée du nord : \nFantassin : ' + position.nord.Fantassin + '\nCavalier : ' + position.nord.Cavalier + '\nLancier : ' + position.nord.Lancier + '\n\n' + 'Information valable pendant ' + tempsrestant + ' secondes avant le redéploiment de l\'armée du nord.');
+            } 
+        else {
+            alert('Vous devez avoir au moins 5 espions dans la région pour obtenir un rapport')
+        }
+        });
+
+        document.getElementById('rapportOuest').addEventListener('click', () => {
+        if (soldat.espionOuest >= 5) {
+            alert('Position de l\'armée de l\'ouest : \nFantassin : ' + position.ouest.Fantassin + '\nCavalier : ' + position.ouest.Cavalier + '\nLancier : ' + position.ouest.Lancier + '\n\n' + 'Information valable pendant ' + tempsrestant + ' secondes avant le redéploiment de l\'armée du ouest.');
+            } 
+        else {
+            alert('Vous devez avoir au moins 5 espions dans la région pour obtenir un rapport')
+        }
+        });
+
+        document.getElementById('rapportEst').addEventListener('click', () => {
+        if (soldat.espionEst >= 5) {
+            alert('Position de l\'armée de l\'est : \nFantassin : ' + position.est.Fantassin + '\nCavalier : ' + position.est.Cavalier + '\nLancier : ' + position.est.Lancier + '\n\n' + 'Information valable pendant ' + tempsrestant + ' secondes avant le redéploiment de l\'armée du est.');
+        }
+        else {
+            alert('Vous devez avoir au moins 5 espions dans la région pour obtenir un rapport')
+        }
+        });
+
+        document.getElementById('rapportSud').addEventListener('click', () => {
+        if (soldat.espionSud >= 5) {
+            alert('Position de l\'armée du sud : \nFantassin : ' + position.sud.Fantassin + '\nCavalier : ' + position.sud.Cavalier + '\nLancier : ' + position.sud.Lancier + '\n\n' + 'Information valable pendant ' + tempsrestant + ' secondes avant le redéploiment de l\'armée du sud.');
+        }
+        else {
+            alert('Vous devez avoir au moins 5 espions dans la région pour obtenir un rapport')
+        }
+        });
+
+        
+
+        //bataille
+        
+        let calculBataille = 0;
+        
+        function bataille(position, type, ennemi, positionennemi) {
+            console.log('valeur fant avant bat :', soldat[type]);
+            if ([position] == positionennemi.Fantassin) {
+                
+                calculBataille += soldat[type] - ennemi.Fantassin;
+                soldat[type] -= ennemi.Fantassin;
+                
+            }
+            else if ([position] == positionennemi.Cavalier) {
+                calculBataille += soldat[type] - (ennemi.Cavalier * 3);
+                soldat[type] = (soldat[type] - (ennemi.Cavalier * 3)) /3 ;
+            }
+            else if ([position] == positionennemi.Lancier) {
+                calculBataille += (soldat[type] * 3) - ennemi.Lancier;
+                soldat[type] = ((soldat[type] * 3) - ennemi.Lancier) / 3;
+            }
+            console.log('valeur fant :', soldat[type]);
+            soldat[type] = parseInt(soldat[type]);
+            console.log('valeur fant apres parse :', soldat[type]);
+            console.log('calcul de la bataille1 : ', calculBataille );
+        }
+
+        function bataille2(position, type, ennemi, positionennemi) {
+            console.log('valeur cav avant bat :', soldat[type]);
+            if ([position] == positionennemi.Fantassin) {
+                
+                calculBataille += soldat[type] - ennemi.Fantassin;
+                soldat[type] = ((soldat[type] * 3) - ennemi.Fantassin) / 3;
+               
+            }
+            else if ([position] == positionennemi.Cavalier) {
+                calculBataille += soldat[type] - ennemi.Cavalier;
+                soldat[type] -= ennemi.Cavalier;
+                
+            }
+            else if ([position] == positionennemi.Lancier) {
+                calculBataille += soldat[type] - (ennemi.Lancier * 3);
+                soldat[type] = soldat[type] - (ennemi.Lancier * 3);
+                
+            }
+            console.log('valeur cavalier :', soldat[type]);
+            soldat[type] = parseInt(soldat[type]);
+            console.log('valeur cav apres parse :', soldat[type]);
+            console.log('calcul de la bataille2 : ', calculBataille );
+            
+        }
+
+        function bataille3(position, type, ennemi, positionennemi) {
+            console.log('valeur lancier avant bat :', soldat[type]);
+            if ([position] == positionennemi.Fantassin) {
+                
+                calculBataille += soldat[type] - (ennemi.Fantassin * 3);
+                soldat[type] -= (ennemi.Fantassin * 3);
+            }
+            else if ([position] == positionennemi.Cavalier) {
+                calculBataille += (soldat[type] * 3) - ennemi.Cavalier ;
+                soldat[type] = ((soldat[type] * 3) - ennemi.Cavalier) /3;
+                
+            }
+            else if ([position] == positionennemi.Lancier) {
+                calculBataille += soldat[type] - ennemi.Lancier;
+                soldat[type] -= ennemi.Lancier;
+            }
+            console.log('valeur lancier :', soldat[type]);
+            soldat[type] = parseInt(soldat[type]);
+            console.log('valeur lancier apres parse :', soldat[type]);
+            console.log('calcul de la bataille3 : ', calculBataille );
+        }
+
+        function resultatbataille(region) {
+            if (calculBataille > 0) {
+                document.getElementById(region).style.display = "none";  
+                maxBat += 50;
+                console.log('calcul de la bataille resolution : ', calculBataille);
+                alert('Vous avez remporté la bataille ! Félicitation.');
+            }
+            else if (calculBataille < 0) {
+                alert('you lose ! Loser !');
+                
+            }
+        }
+        function remiseCompteur() {
+            if (soldat.Fantassin < 0) {
+                soldat.Fantassin = 0;
+            }
+            if (soldat.Cavalier < 0) {
+                soldat.Cavalier = 0;
+            }
+            if (soldat.Lancier < 0) {
+                soldat.Lancier = 0;
+            }
+
+            calculBataille = 0;
+            console.log('calcul de la bataille remise compteur : ', calculBataille );
+        }
+        document.getElementById('aAttaqueNord').addEventListener('click', () => {
+            bataille(fantassinValue, 'Fantassin', armeeNord, position.nord);
+            bataille2(cavalierValue, 'Cavalier', armeeNord, position.nord);
+            bataille3(lancierValue, 'Lancier', armeeNord, position.nord);
+            resultatbataille('aRegionNord');
+            remiseCompteur();
+            soldat.Espion += soldat.espionNord;
+            soldat.espionNord = 0;
+            updateDisplay();
+        });
+        document.getElementById('aAttaqueOuest').addEventListener('click', () => {
+            bataille(fantassinValue, 'Fantassin', armeeOuest, position.ouest);
+            bataille2(cavalierValue, 'Cavalier', armeeOuest, position.ouest);
+            bataille3(lancierValue, 'Lancier', armeeOuest, position.ouest);
+            resultatbataille('aRegionOuest');
+            remiseCompteur();
+            soldat.Espion += soldat.espionOuest;
+            soldat.espionOuest = 0;
+            updateDisplay();
+        });
+        document.getElementById('aAttaqueEst').addEventListener('click', () => {
+            bataille(fantassinValue, 'Fantassin', armeeEst, position.est);
+            bataille2(cavalierValue, 'Cavalier', armeeEst, position.est);
+            bataille3(lancierValue, 'Lancier', armeeEst, position.est);
+            resultatbataille('aRegionEst');
+            remiseCompteur();
+            soldat.Espion += soldat.espionEst;
+            soldat.espionEst = 0;
+            updateDisplay();
+        });
+        document.getElementById('aAttaqueSud').addEventListener('click', () => {
+            bataille(fantassinValue, 'Fantassin', armeeSud, position.sud);
+            bataille2(cavalierValue, 'Cavalier', armeeSud, position.sud);
+            bataille3(lancierValue, 'Lancier', armeeSud, position.sud);
+            resultatbataille('aRegionSud');
+            remiseCompteur();
+            soldat.Espion += soldat.espionSud;
+            soldat.espionSud = 0;
+            updateDisplay();
+        });
+        //Regions
+        //NORD
+        function updateArmeeNord() {
+
+            armeeNord = {
+                Fantassin: getRandomNumber(10, 30),
+                Cavalier: getRandomNumber(10, 20),
+                Lancier: getRandomNumber(15, 25)
+            };
+        
+        const fantassinNord = document.getElementById('rNord-InfoFantassin');
+        fantassinNord.textContent = `Fantassin : ${armeeNord.Fantassin}`;
+        const cavalierNord = document.getElementById('rNord-InfoCavalier');
+        cavalierNord.textContent = `Cavalier : ${armeeNord.Cavalier}`;
+        const lancierNord = document.getElementById('rNord-InfoLancier');
+        lancierNord.textContent = `Lancier : ${armeeNord.Lancier}`;
+    
+        }
+        //OUEST
+        function updateArmeeOuest() {
+
+            armeeOuest = {
+                Fantassin: getRandomNumber(40, 70),
+                Cavalier: getRandomNumber(20, 40),
+                Lancier: getRandomNumber(25, 50)
+            };
+
+        const fantassinOuest = document.getElementById('rOuest-InfoFantassin');
+        fantassinOuest.textContent = `Fantassin : ${armeeOuest.Fantassin}`;
+        const cavalierOuest = document.getElementById('rOuest-InfoCavalier');
+        cavalierOuest.textContent = `Cavalier : ${armeeOuest.Cavalier}`;
+        const lancierOuest = document.getElementById('rOuest-InfoLancier');
+        lancierOuest.textContent = `Lancier : ${armeeOuest.Lancier}`;
+
+        }
+
+        //EST
+        function updateArmeeEst() {
+
+            armeeEst = {
+                Fantassin: getRandomNumber(100, 200),
+                Cavalier: getRandomNumber(50, 70),
+                Lancier: getRandomNumber(10, 90)
+            };
+
+        const fantassinEst = document.getElementById('rEst-InfoFantassin');
+        fantassinEst.textContent = `Fantassin : ${armeeEst.Fantassin}`;
+        const cavalierEst = document.getElementById('rEst-InfoCavalier');
+        cavalierEst.textContent = `Cavalier : ${armeeEst.Cavalier}`;
+        const lancierEst = document.getElementById('rEst-InfoLancier');
+        lancierEst.textContent = `Lancier : ${armeeEst.Lancier}`;
+
+        }
+        //SUD
+        function updateArmeeSud() {
+
+    armeeSud = {
+        Fantassin: getRandomNumber(50, 150),
+        Cavalier: getRandomNumber(150, 250),
+        Lancier: getRandomNumber(100, 150)
+    };
+
+    const fantassinSud = document.getElementById('rSud-InfoFantassin');
+    fantassinSud.textContent = `Fantassin : ${armeeSud.Fantassin}`;
+    const cavalierSud = document.getElementById('rSud-InfoCavalier');
+    cavalierSud.textContent = `Cavalier : ${armeeSud.Cavalier}`;
+    const lancierSud = document.getElementById('rSud-InfoLancier');
+    lancierSud.textContent = `Lancier : ${armeeSud.Lancier}`;
+
+    }
+
+        // Fonction pour mettre à jour les ressources du marché
+        function updateMarketNumbers() {
+            const achatRessourceMarche = document.querySelectorAll('[id^="but-ran-Achat"]');
+            const venteRessourceMarche = document.querySelectorAll('[id^="but-ran-Vente"]');
+    
+            // Mettre à jour les prix d'achat
+            achatRessourceMarche.forEach((element) => {
+                const randomNumber = getRandomNumber(50, 150);
+                element.textContent = `${randomNumber} pièces d'or`;
+                element.setAttribute('data-cost', randomNumber); 
+            });
+    
+            // Mettre à jour les prix de vente
+            venteRessourceMarche.forEach((element) => {
+                const randomNumber = getRandomNumber(50, 150);
+                element.textContent = `${randomNumber} pièces d'or`;
+                element.setAttribute('data-cost', randomNumber); // Stocker la valeur du coût
+            });
+        }
+
+        // Fonction pour gérer les événements de clic pour l'achat et la vente
+        function setupButtonEvents() {
+        // Gestion des achats
+            const achatRessourceMarche = document.querySelectorAll('[id^="but-ran-Achat"]');
+            achatRessourceMarche.forEach((element) => {
+                element.addEventListener('click', () => {
+                    const costAchat = parseInt(element.getAttribute('data-cost')); 
+                    const ressourceType = element.getAttribute('data-ressource'); 
+                if (ressources.Or >= costAchat) {
+                    ressources.Or -= costAchat; 
+                    ressources[ressourceType] += 100; 
+                    updateDisplay2();
+                } else {
+                    alert('Ressources en or insuffisantes pour effectuer cet achat');
+                    }
+            });
+        });
+
+    // Gestion des ventes
+            const venteRessourceMarche = document.querySelectorAll('[id^="but-ran-Vente"]');
+            venteRessourceMarche.forEach((element) => {
+                element.addEventListener('click', () => {
+                    const costVente = parseInt(element.getAttribute('data-cost')); // Gain en or
+                    const ressourceType = element.getAttribute('data-ressource'); // Type de ressource
+                if (ressources[ressourceType] >= 100) { // Vérifie qu'il y a suffisamment de la ressource à vendre
+                    ressources[ressourceType] -= 100; // Retirer 100 unités de la ressource
+                    ressources.Or += costVente; // Ajouter l'or obtenu
+                    updateDisplay2();
+                } else {
+                    alert('Ressources insuffisantes pour vendre cette quantité');
+                    }
+                });
+            });
+        }
+
+// Mettre à jour l'affichage des ressources
+        function updateDisplay2() {
+            document.getElementById('rOr').textContent = `${ressources.Or} or(s)`;
+            document.getElementById('rBois').textContent = `${ressources.Bois} bois`;
+            document.getElementById('rPierre').textContent = `${ressources.Pierre} pierre(s)`;
+            document.getElementById('rNourriture').textContent = `${ressources.Nourriture} nourriture(s)`;
+        }
+
+// Initialisation
+        document.addEventListener('DOMContentLoaded', () => {
+            updateMarketNumbers(); // Met à jour les prix dès le début
+            setupButtonEvents(); // Ajoute les événements aux boutons
+            updateDisplay2(); // Met à jour l'affichage initial
+            setInterval(updateArmeeNord, 300000);
+            updatePositionArmee();
+            updateArmeeNord();
+            updateArmeeEst();
+            updateArmeeOuest();
+            updateArmeeSud();
+            assignRandomValues(position);
+            setInterval(updateArmeeEst, 300000);
+            setInterval(updateArmeeOuest, 300000);
+            setInterval(updateArmeeSud, 300000);
+            setInterval(updateMarketNumbers, 5000); 
+        });
+        
+        
+           // Sélection des éléments
+    const elements = {
+    aChasseur: document.getElementById('aChasseur'),
+    aBucheron: document.getElementById('aBucheron'),
+    aMineur: document.getElementById('aMineur'),
+    tHache: document.getElementById('tHache'),
+    aHabitation: document.getElementById('aHabitation'),
+    aFerme: document.getElementById('aFerme'),
+    aScierie: document.getElementById('aScierie'),
+    aCarriere: document.getElementById('aCarriere'),
+    aMine: document.getElementById('aMine'),
+    tPioche: document.getElementById('tPioche'),
+};
+
+// Fonction générique pour gérer les tooltips
+function addTooltip(elementId, textHover, textDefault) {
+    const element = document.getElementById(elementId);
+    if (element) {
+        element.addEventListener('mouseover', () => element.innerHTML = textHover);
+        element.addEventListener('mouseout', () => element.innerHTML = textDefault);
+    }
+}
+
+// Ajout des tooltips
+addTooltip('aChasseur', 'Coût : 10 nourritures et 5 bois', 'Recrutez un cultivateur');
+addTooltip('aBucheron', 'Coût : 10 nourritures, 10 bois et 10 pierres.', 'Recrutez un bûcheron');
+addTooltip('aMineur', 'Coût : 30 nourritures, 20 bois et 20 pierres.', 'Recrutez un mineur');
+addTooltip('aTailleur', 'Coût : 15 nourritures, 10 bois et 10 pierres.', 'Recrutez un tailleur');
+
+addTooltip('aFantassin', 'Coût : 500 nourritures, 100 pièces d\'or et 5 or/secondes', 'Recrutez un fantassin');
+addTooltip('aCavalier', 'Coût : 500 nourritures, 500 pièces d\'or et 10 or/secondes', 'Recrutez un cavalier');
+addTooltip('aLancier', 'Coût : 300 nourritures, 300 pièces d\'or et 5 or/secondes', 'Recrutez un lancier');
+addTooltip('aEspion', 'Coût : 100 nourritures, 400 pièces d\'or', 'Recrutez un espion');
+addTooltip('aGeneral', 'Coût : 1000 nourritures, 1000 bois, 1000 pierres et 500 pièces d\'or.\nPermet à votre armée de se positionner', 'Recrutez un général');
+
+addTooltip('aHabitation', 'Coût : 100 nourritures, 100 bois et 100 pierres', 'Construisez une habitation');
+addTooltip('aFerme', 'Coût : 200 nourritures, 200 bois et 200 pierres', 'Construisez une ferme');
+addTooltip('aScierie', 'Coût : 200 nourritures, 200 bois et 200 pierres', 'Construisez une scierie');
+addTooltip('aCarriere', 'Coût : 200 nourritures, 200 bois et 200 pierres', 'Construisez une carrière');
+addTooltip('aMine', 'Coût : 500 nourritures, 500 bois et 500 pierres', 'Construisez une mine');
+
+addTooltip('tHache', 'Coût : 500 nourritures', 'Développez la hache');
+addTooltip('tPioche', 'Coût : 1000 nourritures', 'Développez la pioche');
+addTooltip('tMarche', 'Coût : 1000  nourritures, 1000 bois et 1000 pierres', 'Développez le marché');
+addTooltip('tCaserne', 'Coût : 1000 nourritures, 1000 bois, 1000 pierres et 500 pièces d\'or', 'Developpez la caserne');
+addTooltip('tCartographie', 'Coût : 1000 nourritures, 1000 bois, 1000 pierres et 1000 pièces d\'or', 'Developpez la cartographie');
+
+
+
+        // Récolte automatique toutes les 3 secondes
+        setInterval(autoGather, 3000);
+
+        // Mise à jour de l'affichage des ressources toutes les secondes
+        setInterval(updateDisplay, 1000);
+    </script>
+</body>
+</html>
